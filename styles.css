@@ -82,3 +82,42 @@ footer {
     box-sizing: border-box;
     margin-top: auto; /* Ýtir fætinum niður */
 }
+/* Bætum við stíl fyrir takkana á view.html */
+.navigation-buttons {
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px solid #ddd;
+}
+
+#question-text {
+    font-size: 1.4em;
+    font-weight: bold;
+    min-height: 50px; /* Tryggir að textinn haldist stöðugur */
+}
+
+/* Stíll fyrir Byrjunar/Endurræsingartakka */
+#startButton, #restartButton {
+    background-color: #28a745; /* Grænn litur */
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    display: block;
+    margin: 20px auto; /* Miðlægt */
+    padding: 15px 30px;
+    font-size: 1.2em;
+}
+
+/* Stíll fyrir Næsta/Fyrri takka */
+.navigation-buttons button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+.navigation-buttons button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
