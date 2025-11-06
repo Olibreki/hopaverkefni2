@@ -186,3 +186,68 @@ form button[type="submit"]:hover, #clearAll:hover {
     }
     form .field--row label { margin-top: .4rem; }
 }
+#startButton {
+    display: none; /* JS mun sýna ef spurningar finnast */
+}
+
+#question-display,
+#quiz-finished {
+    display: none;
+}
+
+/* Útlit fyrir Spurningafletti */
+#quiz-area {
+    margin-top: 2rem;
+    text-align: center; /* Miðjusetja takka */
+}
+
+#question-display {
+    padding: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-top: 1.5rem;
+    text-align: left;
+}
+
+#question-text {
+    font-size: 1.1em;
+}
+
+#answer-text {
+    margin-top: 10px; 
+    font-weight: bold; 
+    color: #007bff; /* Fyrir 'Sýna svar' */
+    cursor: pointer;
+    border-top: 1px solid #eee;
+    padding-top: 5px;
+}
+
+#status-text {
+    min-height: 1.25rem; /* Til að koma í veg fyrir hopp */
+    margin-top: 0.5rem;
+}
+
+.navigation-buttons {
+    margin-top: 1rem;
+}
+
+/* Stílar fyrir takka */
+#prevButton, 
+#nextButton {
+    padding: 10px;
+}
+
+#prevButton {
+    margin-right: 10px;
+}
+
+#startButton,
+#restartButton {
+    padding: 15px 30px;
+    font-size: 1.2em;
+    background-color: #28a745; /* Grænn litur */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
