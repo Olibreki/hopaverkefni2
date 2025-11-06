@@ -1,153 +1,57 @@
 <!DOCTYPE html>
 <html lang="is">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Spurningar - Skoða</title>
-    <link rel="stylesheet" href="../styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spurningar - Skoða</title>
+    <link rel="stylesheet" href="../styles.css">
+        <script src="../js/spurningar.js"></script>
+        <script src="../js/view.js" defer></script>
 </head>
 <body>
-    <header>
-        <h1>Spurningar Vefur</h1>
-    </header>
+    <header>
+        <h1>Spurningar Vefur</h1>
+    </header>
 
-    <div id="page-container">
-        
-        <nav>
-            <ul>
-                <li><a href="../index.html">Forsíða</a></li>
-                <li><a href="create.html">Búa til spurningar</a></li>
-                <li class="active"><a href="view.html">Birta spurningar</a></li>
-            </ul>
-        </nav>
+    <div id="page-container">
+        
+        <nav>
+            <ul>
+                <li><a href="../index.html">Forsíða</a></li>
+                <li><a href="create.html">Búa til spurningar</a></li>
+                <li class="active"><a href="view.html" aria-current="page">Birta spurningar</a></li>
+            </ul>
+        </nav>
 
-        <main>
-            <h2>Spurningaflettir</h2>
-            
-            <div id="quiz-area">
-                <button id="startButton">Byrja að birta spurningar</button>
-                
-                <div id="question-display" style="display: none;">
-                    <p id="question-text">Spurning:</p>
-                    <p id="status-text"></p>
-                    
-                    <div class="navigation-buttons">
-                        <button id="prevButton" disabled>← Fyrri spurning</button>
-                        <button id="nextButton" disabled>Næsta spurning →</button>
-                    </div>
-                </div>
-                
-                <div id="quiz-finished" style="display: none;">
-                    <h3>Spurningalisti kláraður!</h3>
-                    <button id="restartButton">Byrja aftur</button>
-                </div>
-            </div>
-            
-        </main>
-    </div>
+        <main>
+            <h2>Spurningaflettir</h2>
+            
+            <div id="quiz-area">
+                <p id="load-status">Hleður spurningum...</p>
+                <button id="startButton">Byrja að birta spurningar</button> 
+                
+                <div id="question-display">
+                    <p id="question-text">Spurning:</p>
+                    <p id="answer-text">Sýna svar</p>
+                    <p id="status-text"></p>
+                    
+                    <div class="navigation-buttons">
+                        <button id="prevButton" disabled>← Fyrri spurning</button>
+                        <button id="nextButton" disabled>Næsta spurning →</button>
+                    </div>
+                </div>
+                
+                <div id="quiz-finished">
+                    <h3>Spurningalisti kláraður!</h3>
+                    <button id="restartButton">Byrja aftur</button>
+                </div>
+            </div>
+            
+        </main>
+    </div>
 
-    <footer>
-        <p>© 2025 Spurningar Vefur | Hannaður af [Þitt Nafn]</p>
-    </footer>
-
-    <script>
-      
-
-document.addEventListener('DOMContentLoaded', () => {
-    
-    
-    const questions = [
-        { q: "Hver er höfuðborg Íslands?", a: "Reykjavík" },
-        { q: "Hversu margar plánetur eru í sólkerfinu okkar?", a: "Átta (miðað við að Plútó sé ekki lengur flokkuð sem pláneta)" },
-        { q: "Hvaða frumefni hefur táknið H?", a: "Vetni (Hydrogen)" },
-        { q: "Hver málaði Mona Lisu?", a: "Leonardo da Vinci" },
-        { q: "Hvað er stærsta dýr heims?", a: "Bláhvalur" },
-        { q: "Hvaða ár hófst seinni heimsstyrjöldin?", a: "1939" },
-        { q: "Hvað heitir hæsta fjall heims?", a: "Mount Everest" },
-        { q: "Hvað heitir minnsti fugl heims?", a: "Býflugnahumli (Bee Hummingbird)" },
-        { q: "Hversu marga mánuði eru með 31 dag?", a: "Sjö" },
-        { q: "Hver er lengsta á heims?", a: "Níl (eða Amasón, deilt um)" }
-    ];
-
-    let currentQuestionIndex = -1; 
-
-    
-    const startButton = document.getElementById('startButton');
-    const questionDisplay = document.getElementById('question-display');
-    const questionText = document.getElementById('question-text');
-    const statusText = document.getElementById('status-text');
-    const prevButton = document.getElementById('prevButton');
-    const nextButton = document.getElementById('nextButton');
-    const quizFinished = document.getElementById('quiz-finished');
-    const restartButton = document.getElementById('restartButton');
-
-
-   
-    function displayQuestion() {
-        if (currentQuestionIndex >= 0 && currentQuestionIndex < questions.length) {
-            const currentQ = questions[currentQuestionIndex];
-            
-           
-            questionText.textContent = `Spurning ${currentQuestionIndex + 1} af ${questions.length}: ${currentQ.q}`;
-            statusText.textContent = ``; 
-            
-            
-            prevButton.disabled = (currentQuestionIndex === 0);
-            nextButton.disabled = (currentQuestionIndex === questions.length - 1);
-
-          
-            questionDisplay.style.display = 'block';
-            startButton.style.display = 'none';
-            quizFinished.style.display = 'none';
-
-        } else if (currentQuestionIndex === questions.length) {
-            
-            questionDisplay.style.display = 'none';
-            quizFinished.style.display = 'block';
-        }
-    }
-
-
-  
-    function goToNextQuestion() {
-        if (currentQuestionIndex < questions.length) {
-            currentQuestionIndex++;
-            displayQuestion();
-        }
-    }
-
-    function goToPrevQuestion() {
-        if (currentQuestionIndex > 0) {
-            currentQuestionIndex--;
-            displayQuestion();
-        }
-    }
-
-    
-    function startQuiz() {
-        currentQuestionIndex = 0;
-        displayQuestion();
-        startButton.style.display = 'none';
-    }
-
-
-   
-    startButton.addEventListener('click', startQuiz);
-    restartButton.addEventListener('click', startQuiz);
-    prevButton.addEventListener('click', goToPrevQuestion);
-    nextButton.addEventListener('click', goToNextQuestion);
-
-   
-    prevButton.style.padding = '10px';
-    nextButton.style.padding = '10px';
-    prevButton.style.marginRight = '10px';
-    startButton.style.padding = '15px 30px';
-    startButton.style.fontSize = '1.2em';
-    
-    
-    document.body.style.display = 'flex';
-    document.body.style.flexDirection = 'column';
-});
-    </script>
+    <footer>
+        <p>© 2025 Spurningar Vefur | Hannaður af Einari Atla og Ólafi Breka</p>
+    </footer>
 </body>
 </html>
